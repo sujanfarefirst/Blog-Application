@@ -25,6 +25,10 @@ app.set("view engine", "ejs");
 //app.use('/', require('./server/routes/main')); commonJS
 app.use("/", mainRoutes);
 
+app.get('/create', (req,res)=>{
+  res.render('create.ejs');
+} )
+
 app.listen(PORT, (req, res) => {
   console.log(`Server is listen through port ${PORT}`);
 });

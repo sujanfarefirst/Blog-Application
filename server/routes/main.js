@@ -139,6 +139,25 @@ router.post('/delete-post/:id', async (req, res) => {
 
 
 
+router.post("/posts", async (req, res) => {
+  try {
+    const { title, body } = req.body;
+
+    if (!title || !body) {
+      return res.status(400).send("Title and body are required.");
+    }
+
+    const newPost = new Post({ title, body });
+    await newPost.save();
+
+    res.status(201).redirect('/');
+    
+  } catch (error) {
+    console.error(" Error creating post:", error.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 
 export default router;
 
